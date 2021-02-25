@@ -1,16 +1,19 @@
-// rafce makes a functional component 
+// rafce makes a functional component
 
 
-import React from 'react'
-import Products from './Components/Products'
+// 36.15 minuets
+
+
+import React from "react";
+import { Products, Navbar } from "./Components";
 
 const App = () => {
-    return (
-        <div>
-          <Products></Products>  
-        </div>
-    )
-}
+  return (
+    <div>
+      <Navbar />
+      <Products />
+    </div>
+  );
+};
 
-export default App
-
+export default App;
