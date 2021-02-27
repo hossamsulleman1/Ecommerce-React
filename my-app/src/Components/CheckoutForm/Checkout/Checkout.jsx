@@ -19,18 +19,16 @@ import useStyles from "./styles";
 
 const steps = ["Shipping address", "Payment details"];
 
-const Checkout = ({ cart , onCaptureCheckout, order, error }) => {
+const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
- 
+
   const classes = useStyles();
   const history = useHistory();
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
-
-
 
   useEffect(() => {
     if (cart.id) {
@@ -40,8 +38,10 @@ const Checkout = ({ cart , onCaptureCheckout, order, error }) => {
             type: "cart",
           });
 
+          console.log(token);
+
           setCheckoutToken(token);
-        } catch {
+        } catch (error) {
           if (activeStep !== steps.length) history.push("/");
         }
       };

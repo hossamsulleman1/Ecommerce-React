@@ -41,9 +41,8 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
-
   const [order, setOrder] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [products, setProducts] = useState([]);
   // this is a state containing products
