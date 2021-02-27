@@ -1,3 +1,5 @@
+// this is a shell for the values itterated inside of the array of products
+
 import React from "react";
 import {
   Card,
@@ -12,7 +14,7 @@ import { AddShoppingCart } from "@material-ui/icons";
 import useStyles from "./styles";
 // use styles from a external file instead of on the component
 
-const Product = ({ product }) => {
+const Product = ({ product, onAddToCart }) => {
   // product information is destructured from props
 
   const classes = useStyles();
@@ -20,7 +22,7 @@ const Product = ({ product }) => {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={product.image}
+        image={product.media.source}
         title={product.name}
       ></CardMedia>
       <CardContent>
@@ -28,14 +30,22 @@ const Product = ({ product }) => {
           <Typography variant="h5" gutterBottom>
             {product.name}
           </Typography>
-          <Typography variant="h5">{product.price}</Typography>
+          <Typography variant="h5">
+            {product.price.formatted_with_symbol}
+          </Typography>
         </div>
-        <Typography variant="body2 " color="textSecondary">
-          {product.description}
-        </Typography>
+        <Typography
+          dangerouslySetInnerHTML={{ __html: product.description }}
+          variant="body2"
+          color="textSecondary"
+        />
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
-        <IconButton aria-label="Add to Cart">
+        <IconButton
+          aria-label="Add to Cart"
+          onClick={() => onAddToCart(product.id, 1)}
+        >
+          {/* on click as a call back function ()=> prevents fire when not clicked */}
           <AddShoppingCart></AddShoppingCart>
         </IconButton>
       </CardActions>
